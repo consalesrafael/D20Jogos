@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-3">
+    <a class="navbar-brand" href="/home">D20 Jogos</a>
+  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Promoções</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Board Games</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">RPG</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Acessórios</a>
+        </li>
+      </ul>
+  
+      <ul class="navbar-nav d-flex align-items-center gap-3">
+        <li class="nav-item">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+            <button class="btn btn-outline-light" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-user"></i>
+          </a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <form action="/logout" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <style>
+    /* Estilos para a Navbar */
+.navbar {
+    background-color: #1a1a1a !important; /* Fundo mais escuro para a navbar */
+}
+
+/* Centraliza os links de navegação no meio */
+.navbar-nav.mx-auto {
+    font-size: 1.1em;
+}
+
+.navbar-nav.mx-auto .nav-link {
+    padding: 0.5rem 1.5rem; /* Mais espaçamento entre os links */
+    color: #f8f9fa; /* Cor branca para o texto */
+}
+
+.navbar-nav.mx-auto .nav-link:hover {
+    color: #ffc107; /* Amarelo no hover */
+}
+
+/* Estilo para a barra de pesquisa */
+.form-control {
+    background-color: #343a40;
+    border: 1px solid #495057;
+    color: #fff;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+}
+
+.btn-outline-light {
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+
+/* Estilo para os ícones de usuário e carrinho */
+.navbar-nav .nav-link .fa-user,
+.navbar-nav .nav-link .fa-shopping-cart {
+    font-size: 1.2em;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+  </style>
