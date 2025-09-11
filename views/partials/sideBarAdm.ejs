@@ -1,0 +1,113 @@
+<aside class="sidebar">
+    <div>
+        <div class="sidebar-header">
+            <i class="fas fa-dice-d20"></i> D20 Jogos
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="/admin/dashboard" class="<%= (paginaAtual === 'dashboard') ? 'active' : '' %>">
+                        <i class="fas fa-tachometer-alt icon"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="/gerenciaEstoque" class="<%= (paginaAtual === 'estoque') ? 'active' : '' %>">
+                        <i class="fas fa-box-open icon"></i>
+                        <span class="nav-text">Estoque</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/alugueis" class="<%= (paginaAtual === 'alugueis') ? 'active' : '' %>">
+                        <i class="fas fa-calendar-alt icon"></i>
+                        <span class="nav-text">Aluguéis</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/vendas" class="<%= (paginaAtual === 'vendas') ? 'active' : '' %>">
+                        <i class="fas fa-chart-line icon"></i>
+                        <span class="nav-text">Vendas</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/relatorios" class="<%= (paginaAtual === 'relatorios') ? 'active' : '' %>">
+                        <i class="fas fa-file-alt icon"></i>
+                        <span class="nav-text">Relatórios</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sidebar-footer">
+         <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-life-ring icon"></i><span class="nav-text">Ajuda & Suporte</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<style>
+    /* --- Estilos da Sidebar --- */
+.sidebar {
+    width: 240px;
+    background-color: var(--surface-color);
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    transition: width 0.3s;
+}
+
+.sidebar-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+ 
+.sidebar-header .fa-dice-d20 {
+    color: var(--primary-color);
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav li {
+    margin-bottom: 1rem;
+}
+
+.sidebar-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-nav a.active, .sidebar-nav a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+ 
+.sidebar-nav a.active .icon, .sidebar-nav a:hover .icon {
+    color: var(--text-primary);
+}
+
+.sidebar-nav .icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+</style>

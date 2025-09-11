@@ -12,7 +12,7 @@
         <h2 class="text-danger">Promoção Semanal</h2>
       </div>
     </div>
-
+    <%- include ("partials/modals") %>
     <div class="card bg-dark text-white border-0 product-card">
       <div class="row g-0 align-items-center">
         <div class="col-md-3">
@@ -23,7 +23,7 @@
             <h3 class="card-title">O Senhor dos Anéis: Jornadas na Terra Média</h3>
             <p class="card-text text-decoration-line-through">R$ 299,99</p>
             <h4 class="card-text text-danger fs-2 fw-bold">R$ 249,99</h4>
-            <button class="btn btn-danger w-50 rounded-0">Comprar</button>
+            <a href="/pages/buyPage" class="btn btn-danger w-50 rounded-0">Comprar</a>
           </div>
         </div>
       </div>
@@ -74,6 +74,8 @@
       </div>
     </div>
   </div>
+  
+  </body>
   <%- include ("partials/footer") %>
 </body>
 <style>

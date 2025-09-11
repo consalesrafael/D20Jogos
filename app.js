@@ -17,6 +17,35 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.render("homePage");
   });
+app.get("/pages/buyPage", (req,res)=>{
+  res.render("pages/buyPage")
+})
+app.get("/admin/dashboard",(req,res)=>{
+  res.render("pages/admin/dashboard",{
+     paginaAtual: 'dashboard'
+  })
+})
+app.get('/alugueis', (req, res) => {
+  res.render('pages/admin/alugueis', { // ajuste o caminho aqui
+      paginaAtual: 'alugueis'
+  });
+});
+app.get('/vendas', (req, res) => {
+  res.render('pages/admin/vendas', { // ajuste o caminho aqui
+      paginaAtual: 'vendas'
+  });
+});
+app.get('/relatorios', (req, res) => {
+  res.render('pages/admin/relatorios', { // ajuste o caminho aqui
+      paginaAtual: 'relatorios'
+  });
+});
+app.get("/gerenciaEstoque",(req,res)=>{
+  res.render("pages/admin/estoque",{
+    paginaAtual: 'estoque'
+  })
+})
+
 // db.sync().then(() => {
 //  }); 
     app.listen(3000, () => {

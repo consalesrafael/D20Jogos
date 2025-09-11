@@ -1,0 +1,435 @@
+<%- include ("../../partials/header")  %> 
+<%- include ("../../partials/sideBarAdm") %>
+<body>
+    
+
+    <main class="main-content">
+        <header class="header">
+            <div class="search-bar">
+                <i class="fas fa-search" style="color: var(--text-secondary);"></i>
+                <input type="text" placeholder="Pesquisar algo...">
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary"><i class="fas fa-plus"></i> Criar novo jogo</button>
+                <i class="fas fa-bell icon"></i>
+                <i class="fas fa-user-circle icon"></i>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card overview-card">
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-value">R$ 10.000</div>
+                    <div class="stat-label">Vendas Totais</div>
+                    <div class="stat-change positive">+15%</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value">250</div>
+                    <div class="stat-label">Novos Clientes</div>
+                    <div class="stat-change negative">-5%</div>
+                </div>
+                <div class="stat">
+                     <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="stat-value">1.204</div>
+                    <div class="stat-label">Aluguéis no Mês</div>
+                    <div class="stat-change positive">+8%</div>
+                </div>
+            </div>
+
+            <div class="card comments-card">
+                <div class="card-header">
+                    <h2 class="card-title">Comentários Recentes</h2>
+                </div>
+                <div class="comments-list">
+                    <div class="comment">
+                        <div class="comment-avatar"><img src="https://i.pravatar.cc/150?img=1" alt="Avatar"></div>
+                        <div class="comment-body">
+                            <span class="author">Maria Silva</span>
+                            <span class="item">sobre item-1234</span>
+                            <p class="text">Muito ágil, obrigado!</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-avatar"><img src="https://i.pravatar.cc/150?img=2" alt="Avatar"></div>
+                        <div class="comment-body">
+                            <span class="author">João Silva</span>
+                            <span class="item">sobre item-5678</span>
+                            <p class="text">Ótima experiência</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-avatar"><img src="https://i.pravatar.cc/150?img=3" alt="Avatar"></div>
+                        <div class="comment-body">
+                            <span class="author">Lucas Silva</span>
+                            <span class="item">sobre item-91011</span>
+                            <p class="text">Adorei, muito divertido!</p>
+                        </div>
+                    </div>
+                </div>
+                 <button class="btn-secondary">Ver Todos</button>
+            </div>
+
+            <div class="card rentals-chart-card">
+                <div class="card-header">
+                    <h2 class="card-title">Visão Geral de Aluguéis</h2>
+                </div>
+                <canvas id="rentalsChart"></canvas>
+            </div>
+
+            <div class="card sales-chart-card">
+                <div class="card-header">
+                    <h2 class="card-title">Visão Geral de Vendas</h2>
+                </div>
+                <canvas id="salesChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: 'var(--text-secondary)' },
+                        grid: { color: 'var(--border-color)' }
+                    },
+                    x: {
+                        ticks: { color: 'var(--text-secondary)' },
+                        grid: { display: false }
+                    }
+                }
+            };
+
+            // Gráfico de Aluguéis
+            const rentalsCtx = document.getElementById('rentalsChart').getContext('2d');
+            new Chart(rentalsCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['RPG', 'Tabuleiro', 'Cartas', 'Estratégia', 'Familia', 'Cooperativo'],
+                    datasets: [{
+                        label: 'Aluguéis',
+                        data: [27, 18, 22, 15, 12, 25],
+                        backgroundColor: 'rgba(229, 57, 53, 0.7)',
+                        borderColor: 'var(--primary-color)',
+                        borderWidth: 1,
+                        borderRadius: 5
+                    }]
+                },
+                options: chartOptions
+            });
+
+            // Gráfico de Vendas
+            const salesCtx = document.getElementById('salesChart').getContext('2d');
+            new Chart(salesCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Vendas (R$)',
+                        data: [5200, 6100, 5800, 7500, 6900, 8200],
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        borderColor: 'var(--green-accent)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: chartOptions
+            });
+        });
+    </script>
+</body>
+<style>
+    :root {
+        --bg-color: #121212;
+        --surface-color: #1E1E1E;
+        --primary-color: #E53935;
+        --text-primary: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --border-color: #2c2c2c;
+        --green-accent: #4CAF50;
+        --red-accent: #F44336;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* --- ESTILOS DA SIDEBAR FORAM REMOVIDOS DAQUI --- */
+
+    /* --- Main Content --- */
+    .main-content {
+        flex-grow: 1;
+        padding: 2rem;
+        overflow-y: auto;
+    }
+
+    /* --- Header --- */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .search-bar {
+        background-color: var(--surface-color);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        width: 300px;
+    }
+
+    .search-bar input {
+        background: none;
+        border: none;
+        outline: none;
+        color: var(--text-primary);
+        margin-left: 0.5rem;
+        width: 100%;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--text-primary);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #c62828;
+    }
+
+    .header-actions .icon {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+    }
+
+    /* --- Dashboard Grid --- */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "overview overview comments"
+            "rentals sales comments";
+        gap: 1.5rem;
+    }
+
+    .card {
+        background-color: var(--surface-color);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    /* --- Overview Card --- */
+    .overview-card {
+        grid-area: overview;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+    .stat-label {
+        color: var(--text-secondary);
+    }
+
+    .stat-change {
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+
+    .stat-change.positive {
+        background-color: rgba(76, 175, 80, 0.2);
+        color: var(--green-accent);
+    }
+
+    .stat-change.negative {
+        background-color: rgba(244, 67, 54, 0.2);
+        color: var(--red-accent);
+    }
+
+    /* --- Comments Card --- */
+    .comments-card {
+        grid-area: comments;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .comment {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .comment:last-child {
+        margin-bottom: 0;
+    }
+
+    .comment-avatar img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+
+    .comment-body .author {
+        font-weight: 500;
+    }
+
+    .comment-body .item {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+    }
+
+    .comment-body .text {
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+    
+    .btn-secondary {
+        width: 100%;
+        padding: 0.75rem;
+        background: none;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        margin-top: auto;
+    }
+    
+    .btn-secondary:hover {
+        background-color: var(--primary-color);
+        color: var(--text-primary);
+    }
+
+    /* --- Chart Cards --- */
+    .rentals-chart-card {
+        grid-area: rentals;
+    }
+    
+    .sales-chart-card {
+        grid-area: sales;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1200px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr 1fr;
+             grid-template-areas:
+                "overview comments"
+                "rentals sales";
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "overview"
+                "comments"
+                "rentals"
+                "sales";
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 100%;
+            height: auto;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 1rem;
+            align-items: center;
+        }
+        .sidebar-header, .sidebar-footer {
+            display: none;
+        }
+        .sidebar-nav ul {
+            display: flex;
+            gap: 1rem;
+        }
+         .sidebar-nav a {
+            padding: 0.5rem;
+        }
+        .sidebar-nav .nav-text {
+            display: none;
+        }
+        .main-content {
+            padding: 1rem;
+        }
+        .header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+        .search-bar {
+            width: 100%;
+        }
+    }
+</style>

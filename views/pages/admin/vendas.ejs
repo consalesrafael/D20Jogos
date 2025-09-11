@@ -1,0 +1,193 @@
+<%- include ("../../partials/header")  %> 
+<%- include ("../../partials/sideBarAdm") %>
+
+<body>
+    <main class="main-content">
+        <header class="header">
+            <div class="search-bar">
+                <i class="fas fa-search" style="color: var(--text-secondary);"></i>
+                <input type="text" placeholder="Pesquisar por cliente ou ID da venda...">
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary"><i class="fas fa-plus"></i> Registrar Nova Venda</button>
+                <i class="fas fa-bell icon"></i>
+                <i class="fas fa-user-circle icon"></i>
+            </div>
+        </header>
+
+        <section class="sales-management">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Histórico de Vendas</h2>
+                    <div class="card-filters">
+                        <div class="filter-group">
+                            <label for="date-start">De:</label>
+                            <input type="date" id="date-start" class="filter-date">
+                        </div>
+                        <div class="filter-group">
+                             <label for="date-end">Até:</label>
+                            <input type="date" id="date-end" class="filter-date">
+                        </div>
+                        <div class="filter-group">
+                            <label for="status-filter">Status</label>
+                            <select id="status-filter" class="filter-select">
+                                <option value="all">Todos</option>
+                                <option value="completed">Concluída</option>
+                                <option value="pending">Pendente</option>
+                                <option value="canceled">Cancelada</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary"><i class="fas fa-filter"></i> Filtrar</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID Venda</th>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th class="text-center">Itens</th>
+                                <th>Valor Total</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>VD-731</td>
+                                <td>Lucas Silva</td>
+                                <td>10/09/2025</td>
+                                <td class="text-center">2</td>
+                                <td>R$ 389,80</td>
+                                <td class="text-center"><span class="status-badge status-completed">Concluída</span></td>
+                                <td class="text-center">
+                                    <div class="action-icons">
+                                        <i class="fas fa-receipt" title="Gerar Recibo"></i>
+                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>VD-732</td>
+                                <td>Ana Beatriz</td>
+                                <td>08/09/2025</td>
+                                <td class="text-center">1</td>
+                                <td>R$ 299,90</td>
+                                <td class="text-center"><span class="status-badge status-canceled">Cancelada</span></td>
+                                <td class="text-center">
+                                    <div class="action-icons">
+                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>VD-733</td>
+                                <td>Rafael Consales</td>
+                                <td>05/09/2025</td>
+                                <td class="text-center">3</td>
+                                <td>R$ 639,70</td>
+                                <td class="text-center"><span class="status-badge status-completed">Concluída</span></td>
+                                <td class="text-center">
+                                    <div class="action-icons">
+                                        <i class="fas fa-receipt" title="Gerar Recibo"></i>
+                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>VD-734</td>
+                                <td>João Pereira</td>
+                                <td>02/09/2025</td>
+                                <td class="text-center">1</td>
+                                <td>R$ 89,90</td>
+                                <td class="text-center"><span class="status-badge status-pending">Pendente</span></td>
+                                <td class="text-center">
+                                    <div class="action-icons">
+                                        <i class="fas fa-pencil-alt" title="Editar Venda"></i>
+                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <div class="pagination">
+                    <button class="btn-secondary">Anterior</button>
+                    <span>Página 1 de 8</span>
+                    <button class="btn-secondary">Próximo</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+<style>
+    /* Estilos Globais e do Layout (reutilizados) */
+    :root {
+        --bg-color: #121212;
+        --surface-color: #1E1E1E;
+        --primary-color: #E53935;
+        --text-primary: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --border-color: #2c2c2c;
+        --green-accent: #4CAF50;
+        --orange-accent: #FF9800;
+        --red-accent: #F44336;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .main-content { flex-grow: 1; padding: 2rem; overflow-y: auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .search-bar { background-color: var(--surface-color); padding: 0.5rem 1rem; border-radius: 8px; display: flex; align-items: center; width: 300px; }
+    .search-bar input { background: none; border: none; outline: none; color: var(--text-primary); margin-left: 0.5rem; width: 100%; }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn-primary { background-color: var(--primary-color); color: var(--text-primary); border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.3s; }
+    .btn-primary:hover { background-color: #c62828; }
+    .header-actions .icon { font-size: 1.5rem; color: var(--text-secondary); cursor: pointer; }
+    .btn-secondary { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+    .btn-secondary:hover { background-color: var(--border-color); border-color: var(--text-secondary); }
+    .text-center { text-align: center !important; }
+
+    /* Card e Tabela (reutilizados) */
+    .card { background-color: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); }
+    .card-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 1rem; }
+    .card-title { font-size: 1.2rem; font-weight: 500; }
+    .table-container { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th, .data-table td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; white-space: nowrap; }
+    .data-table thead th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .data-table tbody tr:hover { background-color: #2a2a2a; }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .action-icons { display: flex; justify-content: center; gap: 1.5rem; }
+    .action-icons i { cursor: pointer; color: var(--text-secondary); transition: color 0.3s; }
+    .action-icons i:hover { color: var(--primary-color); }
+    .pagination { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); }
+    
+    /* Filtros (reutilizados) */
+    .card-filters { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .filter-group { display: flex; align-items: center; gap: 0.5rem; }
+    .filter-group label { color: var(--text-secondary); font-size: 0.9rem; }
+    .filter-select, .filter-date {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 0.5rem;
+        outline: none;
+    }
+    .filter-date::-webkit-calendar-picker-indicator { filter: invert(0.8); }
+
+    /* --- NOVOS Status Badges para Vendas --- */
+    .status-badge { padding: 0.3rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: 500; }
+    .status-completed { background-color: rgba(76, 175, 80, 0.2); color: var(--green-accent); }
+    .status-pending { background-color: rgba(255, 152, 0, 0.2); color: var(--orange-accent); }
+    .status-canceled { background-color: rgba(244, 67, 54, 0.2); color: var(--red-accent); }
+</style>

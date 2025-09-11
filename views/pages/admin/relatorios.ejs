@@ -1,0 +1,246 @@
+<%- include ("../../partials/header")  %> 
+<%- include ("../../partials/sideBarAdm") %>
+
+<body>
+    <main class="main-content">
+        <header class="header">
+            <div class="page-title">
+                <h1>Relatórios e Análises</h1>
+                <p>Visão consolidada do desempenho do seu negócio.</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary"><i class="fas fa-file-pdf"></i> Exportar como PDF</button>
+            </div>
+        </header>
+
+        <div class="card filter-card">
+            <div class="filter-group">
+                <label for="date-start">Analisar Período de:</label>
+                <input type="date" id="date-start" class="filter-date">
+            </div>
+            <div class="filter-group">
+                <label for="date-end">Até:</label>
+                <input type="date" id="date-end" class="filter-date">
+            </div>
+            <button class="btn-secondary"><i class="fas fa-chart-pie"></i> Gerar Relatório</button>
+        </div>
+
+        <section class="reports-grid">
+            <div class="card kpi-card">
+                <h3 class="card-title"><i class="fas fa-dollar-sign"></i> Resumo Financeiro</h3>
+                <div class="kpi-container">
+                    <div class="stat">
+                        <div class="stat-value">R$ 10.000</div>
+                        <div class="stat-label">Receita de Vendas</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">R$ 4.580</div>
+                        <div class="stat-label">Receita de Aluguéis</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">R$ 14.580</div>
+                        <div class="stat-label">Receita Total</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                 <h3 class="card-title"><i class="fas fa-chart-line"></i> Desempenho Mensal (Receita Total)</h3>
+                <div class="chart-container">
+                    <canvas id="monthlyPerformanceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h3 class="card-title"><i class="fas fa-star"></i> Jogos Mais Populares</h3>
+                <div class="dual-chart-container">
+                    <div class="chart-wrapper">
+                        <h4>Mais Vendidos</h4>
+                        <div class="chart-container-sm">
+                            <canvas id="topSalesChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <h4>Mais Alugados</h4>
+                         <div class="chart-container-sm">
+                            <canvas id="topRentalsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-card">
+                <h3 class="card-title"><i class="fas fa-users"></i> Top 5 Clientes</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Total Gasto</th>
+                                <th class="text-center">Nº de Compras</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rafael Consales</td>
+                                <td>R$ 1.250,50</td>
+                                <td class="text-center">8</td>
+                            </tr>
+                            <tr>
+                                <td>Lucas Silva</td>
+                                <td>R$ 980,00</td>
+                                <td class="text-center">5</td>
+                            </tr>
+                            <tr>
+                                <td>Ana Beatriz</td>
+                                <td>R$ 875,90</td>
+                                <td class="text-center">7</td>
+                            </tr>
+                            <tr>
+                                <td>Maria Silva</td>
+                                <td>R$ 750,00</td>
+                                <td class="text-center">4</td>
+                            </tr>
+                            <tr>
+                                <td>João Pereira</td>
+                                <td>R$ 620,20</td>
+                                <td class="text-center">6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chartDefaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: 'var(--text-secondary)' }, grid: { color: 'var(--border-color)' } },
+                    x: { ticks: { color: 'var(--text-secondary)' }, grid: { display: false } }
+                }
+            };
+
+            new Chart(document.getElementById('monthlyPerformanceChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                    datasets: [{
+                        label: 'Receita Total',
+                        data: [5200, 6100, 5800, 7500, 6900, 8200],
+                        borderColor: 'var(--primary-color)',
+                        backgroundColor: 'rgba(229, 57, 53, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: chartDefaultOptions
+            });
+
+            new Chart(document.getElementById('topSalesChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Catan', 'D&D', 'TTR', 'Magic', 'Dixit'],
+                    datasets: [{
+                        label: 'Unidades Vendidas',
+                        data: [45, 38, 30, 25, 18],
+                        backgroundColor: 'rgba(76, 175, 80, 0.7)'
+                    }]
+                },
+                options: {...chartDefaultOptions, indexAxis: 'y' }
+            });
+
+            new Chart(document.getElementById('topRentalsChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Coup', 'Gloomhaven', '7 Wonders', 'Carcassonne', 'Azul'],
+                    datasets: [{
+                        label: 'Nº de Aluguéis',
+                        data: [65, 52, 48, 41, 35],
+                        backgroundColor: 'rgba(33, 150, 243, 0.7)'
+                    }]
+                },
+                options: {...chartDefaultOptions, indexAxis: 'y' }
+            });
+        });
+    </script>
+</body>
+
+<style>
+    /* Estilos Globais e do Layout (reutilizados) */
+    :root {
+        --bg-color: #121212;
+        --surface-color: #1E1E1E;
+        --primary-color: #E53935;
+        --text-primary: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --border-color: #2c2c2c;
+        --green-accent: #4CAF50;
+        --blue-accent: #2196F3;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .main-content { flex-grow: 1; padding: 2rem; overflow-y: auto; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .btn-primary { background-color: var(--primary-color); color: var(--text-primary); border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.3s; }
+    .btn-primary:hover { background-color: #c62828; }
+    .btn-secondary { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+    .btn-secondary:hover { background-color: var(--border-color); border-color: var(--text-secondary); }
+    .text-center { text-align: center !important; }
+    .card { background-color: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem; }
+    .card-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary); }
+
+    /* --- Estilos da Tela de Relatórios --- */
+    .page-title h1 { margin: 0; font-size: 1.8rem; }
+    .page-title p { color: var(--text-secondary); margin-top: 0.25rem; }
+
+    .filter-card { margin-bottom: 2rem; display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .filter-group { display: flex; align-items: center; gap: 0.5rem; }
+    .filter-group label { color: var(--text-secondary); font-size: 0.9rem; }
+    .filter-date { background-color: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.5rem; outline: none; }
+    .filter-date::-webkit-calendar-picker-indicator { filter: invert(0.8); }
+
+    .reports-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .kpi-card .kpi-container { display: flex; justify-content: space-around; text-align: center; }
+    .kpi-card .stat-value { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+    .kpi-card .stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+    
+    /* NOVO: Estilo para o container do gráfico */
+    .chart-container {
+        position: relative;
+        height: 280px; /* Altura fixa para o gráfico principal */
+    }
+
+    .chart-container-sm {
+        position: relative;
+        height: 220px; /* Altura fixa menor para os gráficos lado a lado */
+    }
+
+    .chart-card { display: flex; flex-direction: column; }
+    .dual-chart-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; flex-grow: 1; }
+    .chart-wrapper { display: flex; flex-direction: column; }
+    .chart-wrapper h4 { text-align: center; color: var(--text-secondary); font-weight: 400; margin-bottom: 1rem; }
+    .chart-wrapper .chart-container-sm { flex-grow: 1; } /* Faz o container crescer para preencher o espaço */
+
+    .table-container { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th, .data-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+    .data-table thead th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+</style>

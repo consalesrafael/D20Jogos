@@ -1,0 +1,66 @@
+<div class="modal fade" id="userLoginModal" tabindex="-1" aria-labelledby="userLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="userLoginModalLabel">Login / Cadastro</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailInput">
+            </div>
+            <div class="mb-3">
+              <label for="passwordInput" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="passwordInput">
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Entrar</button>
+          </form>
+          <div class="text-center mt-3">
+            <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userRegisterModal">
+              Não tem uma conta? Cadastre-se
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="userRegisterModal" tabindex="-1" aria-labelledby="userRegisterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="userRegisterModalLabel">Criar Nova Conta</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/register" method="POST">
+            <div class="mb-3">
+              <label for="registerNameInput" class="form-label">Nome Completo</label>
+              <input type="text" class="form-control" id="registerNameInput" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerEmailInput" class="form-label">Email</label>
+              <input type="email" class="form-control" id="registerEmailInput" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="registerPasswordInput" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="registerPasswordInput" name="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPasswordInput" class="form-label">Confirmar Senha</label>
+              <input type="password" class="form-control" id="confirmPasswordInput" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Cadastrar</button>
+          </form>
+          <div class="text-center mt-3">
+            <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userLoginModal">
+              Já tem uma conta? Faça login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
