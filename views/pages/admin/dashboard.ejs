@@ -10,7 +10,6 @@
                 <input type="text" placeholder="Pesquisar algo...">
             </div>
             <div class="header-actions">
-                <button class="btn-primary"><i class="fas fa-plus"></i> Criar novo jogo</button>
                 <i class="fas fa-bell icon"></i>
                 <i class="fas fa-user-circle icon"></i>
             </div>
@@ -153,8 +152,11 @@
         --bg-color: #121212;
         --surface-color: #1E1E1E;
         --primary-color: #E53935;
-        --text-primary: #FFFFFF;
-        --text-secondary: #B0B0B0;
+
+        /* Ajustes de contraste */
+        --text-primary: #FFFFFF;   /* Branco puro */
+        --text-secondary: #CCCCCC; /* Cinza claro mais legível */
+
         --border-color: #2c2c2c;
         --green-accent: #4CAF50;
         --red-accent: #F44336;
@@ -175,16 +177,12 @@
         overflow: hidden;
     }
 
-    /* --- ESTILOS DA SIDEBAR FORAM REMOVIDOS DAQUI --- */
-
-    /* --- Main Content --- */
     .main-content {
         flex-grow: 1;
         padding: 2rem;
         overflow-y: auto;
     }
 
-    /* --- Header --- */
     .header {
         display: flex;
         justify-content: space-between;
@@ -236,7 +234,6 @@
         cursor: pointer;
     }
 
-    /* --- Dashboard Grid --- */
     .dashboard-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -263,9 +260,9 @@
     .card-title {
         font-size: 1.2rem;
         font-weight: 500;
+        color: var(--text-primary); /* Força branco puro */
     }
 
-    /* --- Overview Card --- */
     .overview-card {
         grid-area: overview;
         display: flex;
@@ -286,6 +283,7 @@
     .stat-value {
         font-size: 2.5rem;
         font-weight: 700;
+        color: var(--text-primary); /* Corrigido */
     }
 
     .stat-label {
@@ -310,7 +308,6 @@
         color: var(--red-accent);
     }
 
-    /* --- Comments Card --- */
     .comments-card {
         grid-area: comments;
         display: flex;
@@ -336,6 +333,7 @@
 
     .comment-body .author {
         font-weight: 500;
+        color: var(--text-primary); /* Corrigido */
     }
 
     .comment-body .item {
@@ -346,6 +344,7 @@
     .comment-body .text {
         font-size: 0.9rem;
         margin-top: 0.25rem;
+        color: var(--text-primary); /* Corrigido */
     }
     
     .btn-secondary {
@@ -365,7 +364,6 @@
         color: var(--text-primary);
     }
 
-    /* --- Chart Cards --- */
     .rentals-chart-card {
         grid-area: rentals;
     }
@@ -374,7 +372,6 @@
         grid-area: sales;
     }
 
-    /* --- Responsive --- */
     @media (max-width: 1200px) {
         .dashboard-grid {
             grid-template-columns: 1fr 1fr;

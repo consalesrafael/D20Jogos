@@ -1,4 +1,4 @@
-<%- include ("../../partials/header")  %> 
+<%- include ("../../partials/header") %> 
 <%- include ("../../partials/sideBarAdm") %>
 
 <body>
@@ -9,7 +9,9 @@
                 <input type="text" placeholder="Pesquisar por cliente ou ID da venda...">
             </div>
             <div class="header-actions">
-                <button class="btn-primary"><i class="fas fa-plus"></i> Registrar Nova Venda</button>
+                <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#registerSaleModal">
+                    <i class="fas fa-plus"></i> Registrar Nova Venda
+                </button>
                 <i class="fas fa-bell icon"></i>
                 <i class="fas fa-user-circle icon"></i>
             </div>
@@ -121,21 +123,23 @@
             </div>
         </section>
     </main>
+    <%- include ("../../partials/modals") %>
 </body>
 
 <style>
-    /* Estilos Globais e do Layout (reutilizados) */
+ /* Estilos Globais e do Layout */
     :root {
         --bg-color: #121212;
         --surface-color: #1E1E1E;
         --primary-color: #E53935;
-        --text-primary: #FFFFFF;
-        --text-secondary: #B0B0B0;
+        --text-primary: #FFFFFF;  /* Branco puro */
+        --text-secondary: #CCCCCC; /* Cinza claro mais legível */
         --border-color: #2c2c2c;
         --green-accent: #4CAF50;
         --orange-accent: #FF9800;
         --red-accent: #F44336;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
     body {
         background-color: var(--bg-color);
@@ -144,34 +148,40 @@
         height: 100vh;
         overflow: hidden;
     }
+
     .main-content { flex-grow: 1; padding: 2rem; overflow-y: auto; }
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
     .search-bar { background-color: var(--surface-color); padding: 0.5rem 1rem; border-radius: 8px; display: flex; align-items: center; width: 300px; }
     .search-bar input { background: none; border: none; outline: none; color: var(--text-primary); margin-left: 0.5rem; width: 100%; }
+
     .header-actions { display: flex; align-items: center; gap: 1rem; }
     .btn-primary { background-color: var(--primary-color); color: var(--text-primary); border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; cursor: pointer; transition: background-color 0.3s; }
     .btn-primary:hover { background-color: #c62828; }
     .header-actions .icon { font-size: 1.5rem; color: var(--text-secondary); cursor: pointer; }
+
     .btn-secondary { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; }
     .btn-secondary:hover { background-color: var(--border-color); border-color: var(--text-secondary); }
     .text-center { text-align: center !important; }
 
-    /* Card e Tabela (reutilizados) */
+    /* Card e Tabela */
     .card { background-color: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); }
     .card-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid var(--border-color); flex-wrap: wrap; gap: 1rem; }
-    .card-title { font-size: 1.2rem; font-weight: 500; }
+    .card-title { font-size: 1.2rem; font-weight: 500; color: var(--text-primary); }
     .table-container { overflow-x: auto; }
     .data-table { width: 100%; border-collapse: collapse; }
     .data-table th, .data-table td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border-color); vertical-align: middle; white-space: nowrap; }
     .data-table thead th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .data-table tbody td { color: var(--text-primary); }
     .data-table tbody tr:hover { background-color: #2a2a2a; }
     .data-table tbody tr:last-child td { border-bottom: none; }
+
     .action-icons { display: flex; justify-content: center; gap: 1.5rem; }
     .action-icons i { cursor: pointer; color: var(--text-secondary); transition: color 0.3s; }
     .action-icons i:hover { color: var(--primary-color); }
+
     .pagination { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); }
-    
-    /* Filtros (reutilizados) */
+
+    /* Filtros */
     .card-filters { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
     .filter-group { display: flex; align-items: center; gap: 0.5rem; }
     .filter-group label { color: var(--text-secondary); font-size: 0.9rem; }
@@ -185,7 +195,7 @@
     }
     .filter-date::-webkit-calendar-picker-indicator { filter: invert(0.8); }
 
-    /* --- NOVOS Status Badges para Vendas --- */
+    /* Status Badges */
     .status-badge { padding: 0.3rem 0.75rem; border-radius: 12px; font-size: 0.8rem; font-weight: 500; }
     .status-completed { background-color: rgba(76, 175, 80, 0.2); color: var(--green-accent); }
     .status-pending { background-color: rgba(255, 152, 0, 0.2); color: var(--orange-accent); }

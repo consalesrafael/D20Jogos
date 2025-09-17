@@ -176,12 +176,16 @@
         --bg-color: #121212;
         --surface-color: #1E1E1E;
         --primary-color: #E53935;
-        --text-primary: #FFFFFF;
-        --text-secondary: #B0B0B0;
+
+        /* Ajuste de contraste */
+        --text-primary: #FFFFFF;   /* Branco puro */
+        --text-secondary: #CCCCCC; /* Cinza claro mais legível */
+
         --border-color: #2c2c2c;
         --green-accent: #4CAF50;
         --blue-accent: #2196F3;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
     body {
         background-color: var(--bg-color);
@@ -198,11 +202,12 @@
     .btn-secondary { background: none; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; transition: background-color 0.3s, border-color 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 500; }
     .btn-secondary:hover { background-color: var(--border-color); border-color: var(--text-secondary); }
     .text-center { text-align: center !important; }
+
     .card { background-color: var(--surface-color); border-radius: 12px; border: 1px solid var(--border-color); padding: 1.5rem; }
-    .card-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary); }
+    .card-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-primary); }
 
     /* --- Estilos da Tela de Relatórios --- */
-    .page-title h1 { margin: 0; font-size: 1.8rem; }
+    .page-title h1 { margin: 0; font-size: 1.8rem; color: var(--text-primary); }
     .page-title p { color: var(--text-secondary); margin-top: 0.25rem; }
 
     .filter-card { margin-bottom: 2rem; display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
@@ -235,12 +240,13 @@
     .chart-card { display: flex; flex-direction: column; }
     .dual-chart-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; flex-grow: 1; }
     .chart-wrapper { display: flex; flex-direction: column; }
-    .chart-wrapper h4 { text-align: center; color: var(--text-secondary); font-weight: 400; margin-bottom: 1rem; }
-    .chart-wrapper .chart-container-sm { flex-grow: 1; } /* Faz o container crescer para preencher o espaço */
+    .chart-wrapper h4 { text-align: center; color: var(--text-primary); font-weight: 500; margin-bottom: 1rem; }
+    .chart-wrapper .chart-container-sm { flex-grow: 1; }
 
     .table-container { overflow-x: auto; }
     .data-table { width: 100%; border-collapse: collapse; }
     .data-table th, .data-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
     .data-table thead th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; }
+    .data-table tbody td { color: var(--text-primary); }
     .data-table tbody tr:last-child td { border-bottom: none; }
 </style>

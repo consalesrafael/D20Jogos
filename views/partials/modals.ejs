@@ -1,66 +1,359 @@
 <div class="modal fade" id="userLoginModal" tabindex="-1" aria-labelledby="userLoginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal-dialog">
       <div class="modal-content bg-dark text-white">
-        <div class="modal-header border-secondary">
-          <h5 class="modal-title" id="userLoginModalLabel">Login / Cadastro</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="emailInput" class="form-label">Email</label>
-              <input type="email" class="form-control" id="emailInput">
-            </div>
-            <div class="mb-3">
-              <label for="passwordInput" class="form-label">Senha</label>
-              <input type="password" class="form-control" id="passwordInput">
-            </div>
-            <button type="submit" class="btn btn-danger w-100">Entrar</button>
-          </form>
-          <div class="text-center mt-3">
-            <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userRegisterModal">
-              Não tem uma conta? Cadastre-se
-            </a>
+          <div class="modal-header border-secondary">
+              <h5 class="modal-title" id="userLoginModalLabel">Login / Cadastro</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
+          <div class="modal-body">
+              <form>
+                  <div class="mb-3">
+                      <label for="emailInput" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="emailInput">
+                  </div>
+                  <div class="mb-3">
+                      <label for="passwordInput" class="form-label">Senha</label>
+                      <input type="password" class="form-control" id="passwordInput">
+                  </div>
+                  <button type="submit" class="btn btn-danger w-100">Entrar</button>
+              </form>
+              <div class="text-center mt-3">
+                  <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userRegisterModal">
+                      Não tem uma conta? Cadastre-se
+                  </a>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <div class="modal fade" id="userRegisterModal" tabindex="-1" aria-labelledby="userRegisterModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="userRegisterModal" tabindex="-1" aria-labelledby="userRegisterModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
       <div class="modal-content bg-dark text-white">
-        <div class="modal-header border-secondary">
-          <h5 class="modal-title" id="userRegisterModalLabel">Criar Nova Conta</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="/register" method="POST">
-            <div class="mb-3">
-              <label for="registerNameInput" class="form-label">Nome Completo</label>
-              <input type="text" class="form-control" id="registerNameInput" name="name" required>
-            </div>
-            <div class="mb-3">
-              <label for="registerEmailInput" class="form-label">Email</label>
-              <input type="email" class="form-control" id="registerEmailInput" name="email" required>
-            </div>
-            <div class="mb-3">
-              <label for="registerPasswordInput" class="form-label">Senha</label>
-              <input type="password" class="form-control" id="registerPasswordInput" name="password" required>
-            </div>
-            <div class="mb-3">
-              <label for="confirmPasswordInput" class="form-label">Confirmar Senha</label>
-              <input type="password" class="form-control" id="confirmPasswordInput" name="confirmPassword" required>
-            </div>
-            <button type="submit" class="btn btn-danger w-100">Cadastrar</button>
-          </form>
-          <div class="text-center mt-3">
-            <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userLoginModal">
-              Já tem uma conta? Faça login
-            </a>
+          <div class="modal-header border-secondary">
+              <h5 class="modal-title" id="userRegisterModalLabel">Criar Nova Conta</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-        </div>
+          <div class="modal-body">
+              <form action="/register" method="POST">
+                  <div class="mb-3">
+                      <label for="registerNameInput" class="form-label">Nome Completo</label>
+                      <input type="text" class="form-control" id="registerNameInput" name="name" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="registerEmailInput" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="registerEmailInput" name="email" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="registerPasswordInput" class="form-label">Senha</label>
+                      <input type="password" class="form-control" id="registerPasswordInput" name="password" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="confirmPasswordInput" class="form-label">Confirmar Senha</label>
+                      <input type="password" class="form-control" id="confirmPasswordInput" name="confirmPassword" required>
+                  </div>
+                  <button type="submit" class="btn btn-danger w-100">Cadastrar</button>
+              </form>
+              <div class="text-center mt-3">
+                  <a href="#" class="text-warning" data-bs-toggle="modal" data-bs-target="#userLoginModal">
+                      Já tem uma conta? Faça login
+                  </a>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-  
+</div>
+
+<div class="modal fade" id="addGameModal" tabindex="-1" aria-labelledby="addGameModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-secondary">
+              <h5 class="modal-title" id="addGameModalLabel">Adicionar Novo Jogo</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="addGameForm" action="/admin/add-game" method="POST" enctype="multipart/form-data">
+                  <div class="mb-3">
+                      <label for="gameName" class="form-label">Nome do Jogo</label>
+                      <input type="text" class="form-control" id="gameName" name="gameName" placeholder="Ex: Catan" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="gameCategory" class="form-label">Categoria</label>
+                      <input type="text" class="form-control" id="gameCategory" name="gameCategory" placeholder="Ex: Tabuleiro" required>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6 mb-3">
+                          <label for="gameStock" class="form-label">Estoque</label>
+                          <input type="number" class="form-control" id="gameStock" name="gameStock" placeholder="Ex: 15" min="0" required>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                          <label for="gamePrice" class="form-label">Preço (R$)</label>
+                          <input type="number" class="form-control" id="gamePrice" name="gamePrice" placeholder="Ex: 299.90" min="0" step="0.01" required>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                      <label for="gameImage" class="form-label">Foto do Jogo</label>
+                      <input type="file" class="form-control bg-secondary text-white" id="gameImage" name="gameImage" accept="image/*">
+                  </div>
+                  <div class="modal-footer border-top-0 d-flex justify-content-end pt-0 px-0">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-danger">Salvar Jogo</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="registerRentalModal" tabindex="-1" aria-labelledby="registerRentalModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="registerRentalModalLabel">Registrar Novo Aluguel</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerRentalForm" action="/admin/rentals/create" method="POST">
+                    <div class="mb-3">
+                        <label for="rentalUser" class="form-label">Cliente</label>
+                        <select class="form-select" id="rentalUser" name="userId" required>
+                            <option selected disabled value="">Selecione um cliente...</option>
+                            <option value="1">Rafael Consales</option>
+                            <option value="2">Maria Silva</option>
+                            <option value="3">João Pereira</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentalGame" class="form-label">Jogo</label>
+                        <select class="form-select" id="rentalGame" name="gameId" required>
+                            <option selected disabled value="">Selecione um jogo disponível...</option>
+                            <option value="101">Catan (Aluguel: R$ 20,00)</option>
+                            <option value="102">Ticket to Ride (Aluguel: R$ 25,00)</option>
+                            <option value="103">D&D Starter Set (Aluguel: R$ 15,00)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label d-block">Duração do Aluguel</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rentalDuration" id="duration1" value="1" checked>
+                            <label class="form-check-label" for="duration1">1 Dia</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rentalDuration" id="duration3" value="3">
+                            <label class="form-check-label" for="duration3">3 Dias</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="rentalDuration" id="duration5" value="5">
+                            <label class="form-check-label" for="duration5">5 Dias</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentalDate" class="form-label">Data de Início</label>
+                        <input type="date" class="form-control" id="rentalDate" name="startDate" required>
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-end pt-0 px-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Registrar Aluguel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="registerSaleModal" tabindex="-1" aria-labelledby="registerSaleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="registerSaleModalLabel">Registrar Nova Venda</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="registerSaleForm" action="/admin/sales/create" method="POST">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="saleClient" class="form-label">Cliente</label>
+                            <select class="form-select" id="saleClient" name="userId" required>
+                                <option selected disabled value="">Selecione um cliente...</option>
+                                <option value="1">Lucas Silva</option>
+                                <option value="2">Ana Beatriz</option>
+                                <option value="3">Rafael Consales</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="saleDate" class="form-label">Data da Venda</label>
+                            <input type="date" class="form-control" id="saleDate" name="saleDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="saleProducts" class="form-label">Produtos</label>
+                        <select class="form-select" id="saleProducts" name="productIds" multiple required size="4">
+                            <option value="101">Catan (R$ 299,90)</option>
+                            <option value="102">Ticket to Ride (R$ 349,90)</option>
+                            <option value="103">D&D Starter Set (R$ 249,90)</option>
+                            <option value="104">Magic: TG Arena Kit (R$ 89,90)</option>
+                        </select>
+                        <div class="form-text">Para selecionar múltiplos itens, segure Ctrl (ou Cmd no Mac).</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="paymentMethod" class="form-label">Método de Pagamento</label>
+                            <select class="form-select" id="paymentMethod" name="paymentMethod" required>
+                                <option value="credit_card">Cartão de Crédito</option>
+                                <option value="debit_card">Cartão de Débito</option>
+                                <option value="pix">PIX</option>
+                                <option value="cash">Dinheiro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                             <label for="saleStatus" class="form-label">Status da Venda</label>
+                            <select class="form-select" id="saleStatus" name="status" required>
+                                <option value="completed">Concluída</option>
+                                <option value="pending">Pendente</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-end border-top pt-3 mt-3">
+                        <h5 class="text-muted">Total Estimado</h5>
+                        <h3><span class="price-highlight">R$ 0,00</span></h3>
+                    </div>
+
+                    <div class="modal-footer border-top-0 d-flex justify-content-end pt-3 px-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Registrar Venda</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingCartOffcanvas" aria-labelledby="shoppingCartOffcanvasLabel">
+  <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="shoppingCartOffcanvasLabel">Seu Carrinho</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+      <div class="cart-items-container">
+          <div class="cart-item-offcanvas">
+              <img src="/imgs/Catan.png" alt="Catan" class="cart-item-img-offcanvas">
+              <div class="item-details">
+                  <h6>Catan</h6>
+                  <div class="text-muted">1 x <span class="price-highlight">R$ 299,90</span></div>
+              </div>
+              <button class="btn btn-outline-danger btn-sm ms-auto"><i class="fas fa-trash-alt"></i></button>
+          </div>
+          <div class="cart-item-offcanvas">
+              <img src="/imgs/D&D.png" alt="D&D Starter Set" class="cart-item-img-offcanvas">
+              <div class="item-details">
+                  <h6>D&D Starter Set</h6>
+                   <div class="text-muted">1 x <span class="price-highlight">R$ 249,90</span></div>
+              </div>
+              <button class="btn btn-outline-danger btn-sm ms-auto"><i class="fas fa-trash-alt"></i></button>
+          </div>
+      </div>
+      <div class="offcanvas-footer">
+          <div class="d-flex justify-content-between h5">
+              <span>Subtotal</span>
+              <strong class="price-highlight">R$ 549,80</strong>
+          </div>
+          <p class="text-muted small">Taxas e frete serão calculados no checkout.</p>
+          <div class="d-grid gap-2">
+              <a href="/cart" class="btn btn-warning-custom">Ver Carrinho</a>
+              <a href="#" class="btn btn-secondary">Finalizar Compra</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<style>
+/* Estilo para a Sidebar do Carrinho (Offcanvas) */
+.offcanvas {
+    background-color: #1a1a1a;
+    color: #f8f9fa;
+    border-left: 1px solid #495057;
+}
+
+/* NOVA CLASSE DE DESTAQUE DE PREÇO */
+.price-highlight {
+    color: var(--green-accent);
+    font-weight: 700; /* Fonte mais forte */
+    background-color: rgb(255, 255, 255); /* Fundo verde sutil */
+    padding: 2px 6px; /* Espaçamento interno */
+    border-radius: 4px; /* Bordas arredondadas */
+    display: inline-block; /* Garante que o padding e background funcionem bem */
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid #495057;
+}
+.offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.cart-items-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+.cart-item-offcanvas {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #343a40;
+}
+.cart-item-offcanvas:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.cart-item-img-offcanvas {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+.item-details h6 {
+    margin-bottom: 0.25rem;
+}
+.offcanvas-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #495057;
+    background-color: #1a1a1a;
+}
+.btn-warning-custom {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+.btn-warning-custom:hover {
+    background-color: #ffca2c;
+    border-color: #ffca2c;
+    color: #1a1a1a;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const rentalModal = document.getElementById('registerRentalModal');
+        const saleModal = document.getElementById('registerSaleModal');
+        const setTodayDate = (modalElement, inputId) => {
+            if (modalElement) {
+                modalElement.addEventListener('show.bs.modal', function () {
+                    const dateInput = modalElement.querySelector(inputId);
+                    if (dateInput) {
+                        dateInput.value = new Date().toISOString().split('T')[0];
+                    }
+                });
+            }
+        };
+        setTodayDate(rentalModal, '#rentalDate');
+        setTodayDate(saleModal, '#saleDate');
+    });
+</script>

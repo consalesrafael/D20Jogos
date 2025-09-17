@@ -1,6 +1,8 @@
 <%- include ("../../partials/header") %>
+
 <body>
     <%- include ("../../partials/sideBarAdm") %>
+    
     </aside>
 
     <main class="main-content">
@@ -10,12 +12,12 @@
                 <input type="text" placeholder="Pesquisar no estoque...">
             </div>
             <div class="header-actions">
-                <button class="btn-primary"><i class="fas fa-plus"></i> Adicionar Jogo</button>
+                <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#addGameModal"><i class="fas fa-plus"></i> Adicionar Jogo</button>
                 <i class="fas fa-bell icon"></i>
                 <i class="fas fa-user-circle icon"></i>
             </div>
         </header>
-
+            
         <section class="stock-management">
             <div class="card">
                 <div class="card-header">
@@ -43,7 +45,7 @@
                             <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="https://images.unsplash.com/photo-1608675563494-9f49b1a55f5f?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjM2NTAyNX0" alt="Catan">
+                                        <img src="/imgs/Catan.png" alt="Catan">
                                         <span>Catan</span>
                                     </div>
                                 </td>
@@ -63,7 +65,7 @@
                             <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="https://images.unsplash.com/photo-1593132314285-1f23347b3ca1?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjM2NTAyNX0" alt="D&D Starter Set">
+                                        <img src="/imgs/D&D.png" alt="D&D Starter Set">
                                         <span>D&D Starter Set</span>
                                     </div>
                                 </td>
@@ -83,7 +85,7 @@
                             <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="https://images.unsplash.com/photo-1610996238615-bab450772f09?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjM2NTAyNX0" alt="Ticket to Ride">
+                                        <img src="/imgs/Ticket.png" alt="Ticket to Ride">
                                         <span>Ticket to Ride</span>
                                     </div>
                                 </td>
@@ -103,7 +105,7 @@
                              <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="https://images.unsplash.com/photo-1629552174892-421727c62d10?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjM2NTAyNX0" alt="Magic: The Gathering">
+                                        <img src="/imgs/Magic.png" alt="Magic: The Gathering">
                                         <span>Magic: The Gathering Arena Starter Kit</span>
                                     </div>
                                 </td>
@@ -131,6 +133,7 @@
             </div>
         </section>
     </main>
+    <%- include ("../../partials/modals") %>
 </body>
 
 <style>
@@ -138,8 +141,11 @@
         --bg-color: #121212;
         --surface-color: #1E1E1E;
         --primary-color: #E53935;
-        --text-primary: #FFFFFF;
-        --text-secondary: #B0B0B0;
+
+        /* Ajuste de contraste */
+        --text-primary: #FFFFFF;   /* Branco puro */
+        --text-secondary: #CCCCCC; /* Cinza claro mais legível */
+
         --border-color: #2c2c2c;
         --green-accent: #4CAF50;
         --orange-accent: #FF9800;
@@ -161,7 +167,7 @@
         overflow: hidden;
     }
 
-    /* --- Sidebar (reutilizado) --- */
+    /* Sidebar */
     .sidebar {
         width: 240px;
         background-color: var(--surface-color);
@@ -176,8 +182,9 @@
         font-weight: 700;
         margin-bottom: 2rem;
         text-align: center;
+        color: var(--text-primary);
     }
-    
+
     .sidebar-header .fa-dice-d20 {
         color: var(--primary-color);
     }
@@ -208,14 +215,14 @@
     }
     .sidebar-footer { margin-top: auto; }
 
-    /* --- Main Content (reutilizado) --- */
+    /* Main Content */
     .main-content {
         flex-grow: 1;
         padding: 2rem;
         overflow-y: auto;
     }
 
-    /* --- Header (reutilizado) --- */
+    /* Header */
     .header {
         display: flex;
         justify-content: space-between;
@@ -276,8 +283,8 @@
         background-color: var(--border-color);
         border-color: var(--text-secondary);
     }
-    
-    /* --- Estilos da Tela de Estoque --- */
+
+    /* Estoque */
     .card {
         background-color: var(--surface-color);
         border-radius: 12px;
@@ -293,13 +300,14 @@
     .card-title {
         font-size: 1.2rem;
         font-weight: 500;
+        color: var(--text-primary);
     }
     .card-actions {
         display: flex;
         gap: 1rem;
     }
     .table-container {
-        overflow-x: auto; /* Para responsividade em telas pequenas */
+        overflow-x: auto;
     }
     .stock-table {
         width: 100%;
@@ -318,19 +326,17 @@
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
-    .stock-table tbody tr {
-        transition: background-color 0.2s;
+    .stock-table tbody td {
+        color: var(--text-primary);
     }
     .stock-table tbody tr:hover {
         background-color: #2a2a2a;
-    }
-    .stock-table tbody tr:last-child td {
-        border-bottom: none;
     }
     .product-info {
         display: flex;
         align-items: center;
         gap: 1rem;
+        color: var(--text-primary);
     }
     .product-info img {
         width: 40px;
@@ -340,7 +346,7 @@
     }
     .text-center { text-align: center !important; }
 
-    /* --- Status Badges --- */
+    /* Status Badges */
     .status-badge {
         padding: 0.3rem 0.75rem;
         border-radius: 12px;
@@ -361,7 +367,7 @@
         color: var(--red-accent);
     }
 
-    /* --- Action Icons --- */
+    /* Ações */
     .action-icons {
         display: flex;
         justify-content: center;
@@ -376,7 +382,7 @@
         color: var(--primary-color);
     }
 
-    /* --- Pagination --- */
+    /* Paginação */
     .pagination {
         display: flex;
         justify-content: space-between;
