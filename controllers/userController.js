@@ -1,6 +1,4 @@
 const bcrypt = require ("bcrypt")
-const db = require("../models");
-const { error } = require("console");
 
 async function register(req,res) {
     const {usuarioN, emailN,senhaN} = req.body
@@ -9,7 +7,7 @@ async function register(req,res) {
         return res.status(400).json({ mensagem: 'Erro: Todos os campos são obrigatórios!' });
     }
     try{
-        const existe = await db.Usuario.fidOne({
+        const existe = await db.Usuario.findOne({
             where:{
                 email: emailN
             }
@@ -17,9 +15,9 @@ async function register(req,res) {
         if(existe){
             return res.status(409).json({mensagem: "E-mail ja esta em uso"})
         }
-        const senhaCripotagrafa = await bcrypt.rash(senhaN,10)
+        const senhaCripotagrafa = await bcrypt.hash(senhaN,10)
 
-        await db.Usuario.creat({
+        await db.Usuario.create({
             nome: usuarioN,
             email: emailN,
             senha: senhaCripotagrafa

@@ -46,7 +46,7 @@ router.get("/admin/dashboard",(req,res)=>{
       paginaAtual: 'estoque'
     })
   })
-
+router.po
 // router.get("/gerenciarProdutos",authMiddleware.verificaJWT, productController.renderizaProduto)
 // router.get("/relatorios", authMiddleware.verificaJWT, relatorioController.exibirRelatorios)
 // router.post("/logout",loginController.logout)

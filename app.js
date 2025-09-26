@@ -3,8 +3,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const router = require("./router/router");
 const cookieParser = require("cookie-parser");
+const morgan = require("morgan")
 
 const app = express();
+
+app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
