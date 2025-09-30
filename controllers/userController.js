@@ -1,5 +1,5 @@
 const bcrypt = require ("bcrypt")
-
+const db = require("../models")
 async function register(req,res) {
     const {usuarioN, emailN,senhaN} = req.body
 
@@ -23,9 +23,9 @@ async function register(req,res) {
             senha: senhaCripotagrafa
         })
         return res.status(201).json({mensagem:"Usuario criado com sucesso"})
-    }catch(erro){
-        console.error("Erro registrado",error);
-        return res.status(500).json({mensagem:"Ocorreu um erro interno no servidor"})
+    }catch (error) { 
+        console.error("Erro registrado:", error); 
+        return res.status(500).json({ mensagem: "Ocorreu um erro interno no servidor" });
     }
 }
 

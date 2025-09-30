@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 // const loginController = require("../controller/loginController")
-// const userController = require("../controller/userController")
+ const userController = require("../controllers/userController")
 // const authMiddleware = require("../middlewares/authMiddleware")
-// const productController = require("../controller/productController");
+ const gameController = require("../controllers/gameController");
 // const relatorioController = require("../controller/relatorioCrotoller")
 const path = require("path");
 const multer = require("multer")
@@ -46,7 +46,8 @@ router.get("/admin/dashboard",(req,res)=>{
       paginaAtual: 'estoque'
     })
   })
-router.po
+router.post("/register",userController.register)
+router.post("/admin/add-game",upload.single('gameImage'), gameController.gameRegister)
 // router.get("/gerenciarProdutos",authMiddleware.verificaJWT, productController.renderizaProduto)
 // router.get("/relatorios", authMiddleware.verificaJWT, relatorioController.exibirRelatorios)
 // router.post("/logout",loginController.logout)
