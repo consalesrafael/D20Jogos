@@ -6,7 +6,8 @@ const router = express.Router();
  const gameController = require("../controllers/gameController");
 // const relatorioController = require("../controller/relatorioCrotoller")
 const path = require("path");
-const multer = require("multer")
+const multer = require("multer");
+const jogo = require("../models/jogo");
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
@@ -41,13 +42,11 @@ router.get("/admin/dashboard",(req,res)=>{
         paginaAtual: 'relatorios'
     });
   });
-  router.get("/gerenciaEstoque",(req,res)=>{
-    res.render("./pages/admin/estoque",{
-      paginaAtual: 'estoque'
-    })
-  })
+
 router.post("/register",userController.register)
-router.post("/admin/add-game",upload.single('gameImage'), gameController.gameRegister)
+
+router.post("/admin/add-game",upload.single('gameImage'),gameController.gameRegister)
+router.get("/gerenciaEstoque",gameController.redezaProduto, gameController.renderizaEstoquePage)
 // router.get("/gerenciarProdutos",authMiddleware.verificaJWT, productController.renderizaProduto)
 // router.get("/relatorios", authMiddleware.verificaJWT, relatorioController.exibirRelatorios)
 // router.post("/logout",loginController.logout)
@@ -58,8 +57,6 @@ router.post("/admin/add-game",upload.single('gameImage'), gameController.gameReg
 // router.post("/p/:id",authMiddleware.verificaJWT, productController.avaliaProduto)
 // router.post("/login", loginController.login)
 
-router.get("/",(req,res)=>{
-    res.render('homePage')
-})
+router.get("/", gameController.redezaProduto, gameController.renderizaHomePage)
 
 module.exports=router;

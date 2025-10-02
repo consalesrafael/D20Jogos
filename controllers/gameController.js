@@ -36,7 +36,31 @@ async function gameRegister(req, res) {
         res.redirect('/gerenciaEstoque');
     }
 }
-
+async function redezaProduto(req,res,next) {
+    try{
+        const games = await db.Jogo.findAll({raw:true, order:[["nome","ASC"]]})
+        req.jogo=games
+        
+        next();
+    }catch(error){
+        console.error("Erro ao exibir catalogo de jogos",error)
+        res.status(500).send("Erro interno no servidor", error)
+    }
+}
+async function renderizaHomePage(req, res) {
+       res.render("homePage",{
+            Jogo:req.jogo
+        })
+}
+async function renderizaEstoquePage(req,res) {
+    res.render("pages/admin/estoque",{
+        paginaAtual: "estoque",
+        Jogo: req.jogo
+    })
+}
 module.exports = {
-    gameRegister
+    gameRegister,
+    redezaProduto,
+    renderizaHomePage,
+    renderizaEstoquePage
 };

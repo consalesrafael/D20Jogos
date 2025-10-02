@@ -1,4 +1,5 @@
 <%- include ("partials/header") %>
+
 <body>
   <%- include ("partials/navBar") %>
   <div class="banner-container">
@@ -29,15 +30,16 @@
       </div>
     </div>
   </div>
-  <% Jogos.forEach(Jogo =>{ %>
+
   <div class="container my-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% Jogo.forEach(jogo => { %>
       <div class="col">
         <div class="card h-100 bg-dark text-white border-0 product-card">
-          <img src="/imgs/Catan.png" class="card-img-top" alt="Catan">
+          <img src="<%= jogo.caminho_foto %>" class="card-img-top" alt="<%= jogo.nome %>">
           <div class="card-body text-center">
-            <h5 class="card-title"><%= Jogo.nome %></h5>
-            <p class="card-text">R$ 199,99</p>
+            <h5 class="card-title"><%= jogo.nome %></h5>
+            <p class="card-text">R$ <%= parseFloat(jogo.preco).toFixed(2).replace('.', ',') %></p>
           </div>
           <div class="card-footer bg-transparent border-0 d-flex flex-column gap-2 p-3">
             <button class="btn btn-danger w-100 rounded-0">Comprar</button>
@@ -45,65 +47,36 @@
           </div>
         </div>
       </div>
- <% } %>
-      <div class="col">
-        <div class="card h-100 bg-dark text-white border-0 product-card">
-          <img src="/imgs/Ticket.png" class="card-img-top" alt="Ticket to Ride">
-          <div class="card-body text-center">
-            <h5 class="card-title">Ticket to Ride</h5>
-            <p class="card-text">R$ 179,99</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 d-flex flex-column gap-2 p-3">
-            <button class="btn btn-danger w-100 rounded-0">Comprar</button>
-            <button class="btn btn-warning w-100 rounded-0">Alugar</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card h-100 bg-dark text-white border-0 product-card">
-          <img src="/imgs/Azul.png" class="card-img-top" alt="Azul">
-          <div class="card-body text-center">
-            <h5 class="card-title">Azul</h5>
-            <p class="card-text">R$ 159,99</p>
-          </div>
-          <div class="card-footer bg-transparent border-0 d-flex flex-column gap-2 p-3">
-            <button class="btn btn-danger w-100 rounded-0">Comprar</button>
-            <button class="btn btn-warning w-100 rounded-0">Alugar</button>
-          </div>
-        </div>
-      </div>
+      <% }); %>
     </div>
   </div>
-  
-  </body>
+
   <%- include ("partials/footer") %>
 </body>
+
 <style>
   body {
-    background-color: #212529; /* Cor de fundo escura para a página */
+    background-color: #212529;
   }
 
-  /* Estilo para os cards */
   .card {
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para os cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .card-title {
     font-weight: bold;
   }
 
-  /* Animação de hover para os cards */
   .card:hover {
-    transform: translateY(-5px); /* Move o card 5px para cima */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Aumenta a sombra */
-    transition: all 0.3s ease-in-out; /* Transição suave para a animação */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
   }
 
-  /* Estilos para os botões de compra e aluguel */
-  .btn-danger, .btn-warning {
-    border-radius: 0; /* Remove o border-radius padrão do Bootstrap */
+  .btn-danger,
+  .btn-warning {
+    border-radius: 0;
   }
 
   .btn-danger {
@@ -116,45 +89,39 @@
     border-color: #ffc107;
   }
 
-  /* Estilo para a imagem principal no topo da página */
   .img-fluid.w-100 {
     height: 400px;
-    object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
+    object-fit: cover;
   }
-  /* Container para o banner e o título */
+
   .banner-container {
     position: relative;
-    height: 400px; /* Ajuste a altura para corresponder à altura da imagem */
-    overflow: hidden; /* Garante que nada saia dos limites do container */
-
+    height: 400px;
+    overflow: hidden;
   }
 
-  /* Novo estilo para arredondar os cards de produtos */
   .product-card {
-    border-radius: 0px !important; /* Adiciona border-radius aos cards */
-    overflow: hidden; /* Garante que o conteúdo e as imagens sigam o arredondamento */
+    border-radius: 0px !important;
+    overflow: hidden;
   }
 
-  /* Estilos para a Navbar */
   .navbar {
-    background-color: #1a1a1a !important; /* Fundo mais escuro para a navbar */
+    background-color: #1a1a1a !important;
   }
 
-  /* Centraliza os links de navegação no meio */
   .navbar-nav.mx-auto {
     font-size: 1.1em;
   }
 
   .navbar-nav.mx-auto .nav-link {
-    padding: 0.5rem 1.5rem; /* Mais espaçamento entre os links */
-    color: #f8f9fa; /* Cor branca para o texto */
+    padding: 0.5rem 1.5rem;
+    color: #f8f9fa;
   }
 
   .navbar-nav.mx-auto .nav-link:hover {
-    color: #ffc107; /* Amarelo no hover */
+    color: #ffc107;
   }
 
-  /* Estilo para a barra de pesquisa */
   .form-control {
     background-color: #343a40;
     border: 1px solid #495057;
@@ -170,7 +137,6 @@
     border-color: #f8f9fa;
   }
 
-  /* Estilo para os ícones de usuário e carrinho */
   .navbar-nav .nav-link .fa-user,
   .navbar-nav .nav-link .fa-shopping-cart {
     font-size: 1.2em;

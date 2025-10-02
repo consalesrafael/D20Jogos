@@ -41,79 +41,21 @@
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
+                        <% Jogo.forEach(jogo => { %>
                         <tbody>
+                            
                             <tr>
                                 <td>
                                     <div class="product-info">
-                                        <img src="/imgs/Catan.png" alt="Catan">
+                                        <img src="<%= jogo.caminho_foto %>" alt="Catan">
                                         <span>Catan</span>
                                     </div>
                                 </td>
-                                <td>CAT-001</td>
-                                <td>Tabuleiro</td>
+                                <td><%= jogo.id %></td>
+                                <td><%= jogo.descricao %></td>
                                 <td class="text-center">15</td>
-                                <td>R$ 299,90</td>
-                                <td><span class="status-badge status-in-stock">Em Estoque</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-eye" title="Visualizar"></i>
-                                        <i class="fas fa-pencil-alt" title="Editar"></i>
-                                        <i class="fas fa-trash-alt" title="Apagar"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="/imgs/D&D.png" alt="D&D Starter Set">
-                                        <span>D&D Starter Set</span>
-                                    </div>
-                                </td>
-                                <td>RPG-001</td>
-                                <td>RPG</td>
-                                <td class="text-center">4</td>
-                                <td>R$ 249,90</td>
-                                <td><span class="status-badge status-low-stock">Estoque Baixo</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-eye" title="Visualizar"></i>
-                                        <i class="fas fa-pencil-alt" title="Editar"></i>
-                                        <i class="fas fa-trash-alt" title="Apagar"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="/imgs/Ticket.png" alt="Ticket to Ride">
-                                        <span>Ticket to Ride</span>
-                                    </div>
-                                </td>
-                                <td>TTR-001</td>
-                                <td>Tabuleiro</td>
-                                <td class="text-center">0</td>
-                                <td>R$ 349,90</td>
-                                <td><span class="status-badge status-out-of-stock">Sem Estoque</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-eye" title="Visualizar"></i>
-                                        <i class="fas fa-pencil-alt" title="Editar"></i>
-                                        <i class="fas fa-trash-alt" title="Apagar"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                             <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="/imgs/Magic.png" alt="Magic: The Gathering">
-                                        <span>Magic: The Gathering Arena Starter Kit</span>
-                                    </div>
-                                </td>
-                                <td>MTG-001</td>
-                                <td>Cartas</td>
-                                <td class="text-center">22</td>
-                                <td>R$ 89,90</td>
-                                <td><span class="status-badge status-in-stock">Em Estoque</span></td>
+                                <td><%= jogo.preco %>></td>
+                                <td><span class="status-badge status-in-stock"><%= </span></td>
                                 <td class="text-center">
                                     <div class="action-icons">
                                         <i class="fas fa-eye" title="Visualizar"></i>
@@ -123,8 +65,10 @@
                                 </td>
                             </tr>
                         </tbody>
+                    <% }) %>
                     </table>
                 </div>
+                
                  <div class="pagination">
                     <button class="btn-secondary">Anterior</button>
                     <span>Página 1 de 10</span>
