@@ -268,7 +268,46 @@
       </div>
   </div>
 </div>
-
+<div class="modal fade" id="editGameModal" tabindex="-1" aria-labelledby="addGameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="addGameModalLabel">editar Jogo</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addGameForm" action="/admin/add-game" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="gameName" class="form-label">Nome do Jogo</label>
+                        <input type="text" class="form-control" id="Name" name="gameName" placeholder="Ex: e6Catan" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gameCategory" class="form-label">Categoria</label>
+                        <input type="text" class="form-control" id="Category" name="gameCategory" placeholder="Ex: Tabuleiro" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="gameStock" class="form-label">Estoque</label>
+                            <input type="number" class="form-control" id="Stock" name="gameStock" placeholder="Ex: 15" min="0" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="gamePrice" class="form-label">Preço (R$)</label>
+                            <input type="number" class="form-control" id="Price" name="gamePrice" placeholder="Ex: 299.90" min="0" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gameImage" class="form-label">Foto do Jogo</label>
+                        <input type="file" class="form-control bg-secondary text-white" id="gameImageFile" name="gameImage" accept="image/*">
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-end pt-0 px-0">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Salvar Jogo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
 <style>
 /* Estilo para a Sidebar do Carrinho (Offcanvas) */
 .offcanvas {

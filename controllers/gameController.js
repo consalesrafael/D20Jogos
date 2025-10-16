@@ -58,9 +58,53 @@ async function renderizaEstoquePage(req,res) {
         Jogo: req.jogo
     })
 }
+async function renderizaAlugueis(req,res) {
+    res.render('./pages/admin/alugueis', { 
+        paginaAtual: 'alugueis',
+        Jogo: req.jogo
+ });
+}
+async function deletGame(req,res) {
+    const jogoId = req.params.id
+
+    if (jogoId){
+        try{
+            await db.Jogo.destroy({where:{id:jogoId}})
+            res.redirect("/gerenciaEstoque")
+        }catch(erro){
+            console.log(erro)
+        }
+    }
+}
+async function getJogoData(req,res) {
+    const jogoId = req.params.id
+    const jogo = await db.jogo.findByPk(jogoId)
+
+ try{
+    if(!jogoId){
+        return res.status(404).json({mensagem: "Jogo não encontrado"})
+    }
+    res.json(jogo)
+ }catch (error){
+    console.log(error)
+    res.status(500).json({mensagem:"Erro interno no servidor"})
+ }
+}
+async function editGame(req,res) {
+    const gameId = req.params.id
+    const JogoParaEditar = db.Jogo.findByPk(gameId)
+
+    if(!JogoParaEditar){
+        res.retu
+    }
+}
+
 module.exports = {
     gameRegister,
     redezaProduto,
     renderizaHomePage,
-    renderizaEstoquePage
+    renderizaEstoquePage,
+    renderizaAlugueis,
+    deletGame,
+    getJogoData
 };

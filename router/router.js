@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
+
 router.get("/pages/buyPage",(req, res)=>{
     res.render("./pages/buyPage")
 });
@@ -27,11 +28,7 @@ router.get("/admin/dashboard",(req,res)=>{
        paginaAtual: 'dashboard'
     })
   })
-  router.get('/alugueis', (req, res) => {
-    res.render('./pages/admin/alugueis', { 
-        paginaAtual: 'alugueis'
-    });
-  });
+
   router.get('/vendas', (req, res) => {
     res.render('./pages/admin/vendas', { 
         paginaAtual: 'vendas'
@@ -45,18 +42,11 @@ router.get("/admin/dashboard",(req,res)=>{
 
 router.post("/register",userController.register)
 
+router.post("/admin/add-game",upload.single('gameImage'),)
 router.post("/admin/add-game",upload.single('gameImage'),gameController.gameRegister)
 router.get("/gerenciaEstoque",gameController.redezaProduto, gameController.renderizaEstoquePage)
-// router.get("/gerenciarProdutos",authMiddleware.verificaJWT, productController.renderizaProduto)
-// router.get("/relatorios", authMiddleware.verificaJWT, relatorioController.exibirRelatorios)
-// router.post("/logout",loginController.logout)
-// router.post('/createProduct', upload.single('imagem'),authMiddleware.verificaJWT, productController.criaProduto);
-// router.post('/produtos/editar/:id', upload.single('imagem'),authMiddleware.verificaJWT, productController.editarProduto);
-// router.post("/createUser", userController.createUser)
-// router.post("/produtos/deletar/:id", authMiddleware.verificaJWT, productController.deletaProduto)
-// router.post("/p/:id",authMiddleware.verificaJWT, productController.avaliaProduto)
-// router.post("/login", loginController.login)
-
+router.get("/alugueis", gameController.redezaProduto,gameController.renderizaAlugueis)
+router.post("/jogos/deletar/:id",gameController.deletGame)
 router.get("/", gameController.redezaProduto, gameController.renderizaHomePage)
 
 module.exports=router;

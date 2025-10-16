@@ -41,31 +41,47 @@
                                 <th class="text-center">Ações</th>
                             </tr>
                         </thead>
-                        <% Jogo.forEach(jogo => { %>
                         <tbody>
-                            
-                            <tr>
-                                <td>
-                                    <div class="product-info">
-                                        <img src="<%= jogo.caminho_foto %>" alt="Catan">
-                                        <span>Catan</span>
-                                    </div>
-                                </td>
-                                <td><%= jogo.id %></td>
-                                <td><%= jogo.descricao %></td>
-                                <td class="text-center">15</td>
-                                <td><%= jogo.preco %>></td>
-                                <td><span class="status-badge status-in-stock"><%= </span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-eye" title="Visualizar"></i>
-                                        <i class="fas fa-pencil-alt" title="Editar"></i>
-                                        <i class="fas fa-trash-alt" title="Apagar"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% Jogo.forEach(jogo => { %>
+                                <tr>
+                                    <td>
+                                        <div class="product-info">
+                                            <img src="<%= jogo.caminho_foto %>" alt="<%= jogo.nome %>">
+                                            <span><%= jogo.nome %></span>
+                                        </div>
+                                    </td>
+                                    <td><%= jogo.id %></td>
+                                    <td><%= jogo.descricao %></td>
+                                    <td class="text-center"><%= jogo.quantidade %></td>
+                                    <td>R$ <%= parseFloat(jogo.preco).toFixed(2).replace('.', ',') %></td>
+                                    <td>
+                                        <% if (jogo.quantidade > 10) { %>
+                                            <span class="status-badge status-in-stock">Em Estoque</span>
+                                        <% } else if (jogo.quantidade > 0) { %>
+                                            <span class="status-badge status-low-stock">Estoque Baixo</span>
+                                        <% } else { %>
+                                            <span class="status-badge status-out-of-stock">Fora de Estoque</span>
+                                        <% } %>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="action-icons">
+                                           <a href="#" class="edit-game-btn" 
+                                            data-id="<%= jogo.id %>" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#editGameModal"
+                                            title="Editar">
+                                             <i class="fas fa-pencil-alt"></i>
+                                         </a>
+                                            <form action="/jogos/deletar/<%= jogo.id %>" method="POST" style="display: inline;" onsubmit="return confirm('Você tem certeza que deseja apagar este jogo?');">
+                                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline" title="Apagar">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% }) %>
                         </tbody>
-                    <% }) %>
                     </table>
                 </div>
                 
@@ -85,24 +101,19 @@
         --bg-color: #121212;
         --surface-color: #1E1E1E;
         --primary-color: #E53935;
-
-        /* Ajuste de contraste */
-        --text-primary: #FFFFFF;   /* Branco puro */
-        --text-secondary: #CCCCCC; /* Cinza claro mais legível */
-
+        --text-primary: #FFFFFF;
+        --text-secondary: #CCCCCC;
         --border-color: #2c2c2c;
         --green-accent: #4CAF50;
         --orange-accent: #FF9800;
         --red-accent: #F44336;
     }
-
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Roboto', sans-serif;
     }
-
     body {
         background-color: var(--bg-color);
         color: var(--text-primary);
@@ -110,63 +121,11 @@
         height: 100vh;
         overflow: hidden;
     }
-
-    /* Sidebar */
-    .sidebar {
-        width: 240px;
-        background-color: var(--surface-color);
-        padding: 2rem 1rem;
-        display: flex;
-        flex-direction: column;
-        border-right: 1px solid var(--border-color);
-    }
-
-    .sidebar-header {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        text-align: center;
-        color: var(--text-primary);
-    }
-
-    .sidebar-header .fa-dice-d20 {
-        color: var(--primary-color);
-    }
-
-    .sidebar-nav ul { list-style: none; }
-    .sidebar-nav li { margin-bottom: 1rem; }
-    .sidebar-nav a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 0.75rem;
-        border-radius: 8px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .sidebar-nav a.active, .sidebar-nav a:hover {
-        background-color: var(--primary-color);
-        color: var(--text-primary);
-    }
-    .sidebar-nav a.active .icon, .sidebar-nav a:hover .icon {
-        color: var(--text-primary);
-    }
-    .sidebar-nav .icon {
-        margin-right: 1rem;
-        font-size: 1.2rem;
-        width: 20px;
-        text-align: center;
-    }
-    .sidebar-footer { margin-top: auto; }
-
-    /* Main Content */
     .main-content {
         flex-grow: 1;
         padding: 2rem;
         overflow-y: auto;
     }
-
-    /* Header */
     .header {
         display: flex;
         justify-content: space-between;
@@ -227,8 +186,6 @@
         background-color: var(--border-color);
         border-color: var(--text-secondary);
     }
-
-    /* Estoque */
     .card {
         background-color: var(--surface-color);
         border-radius: 12px;
@@ -289,8 +246,6 @@
         object-fit: cover;
     }
     .text-center { text-align: center !important; }
-
-    /* Status Badges */
     .status-badge {
         padding: 0.3rem 0.75rem;
         border-radius: 12px;
@@ -310,23 +265,24 @@
         background-color: rgba(244, 67, 54, 0.2);
         color: var(--red-accent);
     }
-
-    /* Ações */
     .action-icons {
         display: flex;
         justify-content: center;
         gap: 1.5rem;
     }
-    .action-icons i {
-        cursor: pointer;
+    .action-icons a, .action-icons button {
         color: var(--text-secondary);
         transition: color 0.3s;
+        background: none;
+        border: none;
+        cursor: pointer;
     }
-    .action-icons i:hover {
+    .action-icons a:hover, .action-icons button:hover {
         color: var(--primary-color);
     }
-
-    /* Paginação */
+    .action-icons i {
+        font-size: 1rem;
+    }
     .pagination {
         display: flex;
         justify-content: space-between;
