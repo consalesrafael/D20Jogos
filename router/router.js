@@ -42,7 +42,8 @@ router.get("/admin/dashboard",(req,res)=>{
 
 router.post("/register",userController.register)
 
-router.post("/admin/add-game",upload.single('gameImage'),)
+router.post("/jogos/editar/:id",upload.single('gameImage'),gameController.editGame)
+router.get('/api/jogos/:id', gameController.getJogoData)
 router.post("/admin/add-game",upload.single('gameImage'),gameController.gameRegister)
 router.get("/gerenciaEstoque",gameController.redezaProduto, gameController.renderizaEstoquePage)
 router.get("/alugueis", gameController.redezaProduto,gameController.renderizaAlugueis)

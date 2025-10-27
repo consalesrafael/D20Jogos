@@ -78,7 +78,7 @@ async function deletGame(req,res) {
 }
 async function getJogoData(req,res) {
     const jogoId = req.params.id
-    const jogo = await db.jogo.findByPk(jogoId)
+    const jogo = await db.Jogo.findByPk(jogoId)
 
  try{
     if(!jogoId){
@@ -92,11 +92,35 @@ async function getJogoData(req,res) {
 }
 async function editGame(req,res) {
     const gameId = req.params.id
-    const JogoParaEditar = db.Jogo.findByPk(gameId)
+    const JogoParaEditar = await db.Jogo.findByPk(gameId)
+    const gameName = req.body.gameName;
+    const gameCategory = req.body.gameCategory;
+    const gameStock = req.body.gameStock;
+    const gamePrice = req.body.gamePrice;
 
     if(!JogoParaEditar){
-        res.retu
+        return res.status(404).json({mensagem:"Jogo não econtrado"})
     }
+    const dadosParaAtualizar = {}
+
+    if(gameName != null && gameName !== ''){
+        dadosParaAtualizar.nome = gameName
+    }
+    if(gameCategory != null){
+        dadosParaAtualizar.descricao = gameCategory
+    }
+    if(gameStock !=null && gameStock !== ''){
+        dadosParaAtualizar.gameStock = gameStock
+    }
+    if(gamePrice !=null && gamePrice !== ''){
+        dadosParaAtualizar.gamePrice = gamePrice
+    }
+
+    if (req.file) {
+        dadosParaAtualizar.caminho_foto = '/uploads/' + req.file.filename;
+    }
+    await JogoParaEditar.update(dadosParaAtualizar)
+    return res.redirect('/gerenciaEstoque')
 }
 
 module.exports = {
@@ -106,5 +130,6 @@ module.exports = {
     renderizaEstoquePage,
     renderizaAlugueis,
     deletGame,
-    getJogoData
+    getJogoData,
+    editGame
 };

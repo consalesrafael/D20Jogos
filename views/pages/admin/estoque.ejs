@@ -93,6 +93,38 @@
             </div>
         </section>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const editButtons = document.querySelectorAll('.edit-game-btn');
+    
+            editButtons.forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    
+                    // 1. O ID é pego do ATRIBUTO 'data-id' do botão clicado
+                    const gameId = button.dataset.id; 
+    
+                    try {
+                        // 2. O ID é usado para buscar os dados do jogo na sua API
+                        const response = await fetch(`/api/jogos/${gameId}`);
+                        const jogo = await response.json();
+    
+                        // 3. Os dados preenchem o formulário
+                        document.getElementById('editGameName').value = jogo.nome;
+                        document.getElementById('editGameCategory').value = jogo.descricao;
+                        document.getElementById('editGameStock').value = jogo.quantidade;
+                        document.getElementById('editGamePrice').value = parseFloat(jogo.preco).toFixed(2);
+                        
+                        // 4. AQUI O ID É INJETADO NO 'action' DO FORMULÁRIO
+                        const editForm = document.getElementById('editGameForm');
+                        editForm.action = `/jogos/editar/${gameId}`; // Define a URL de envio correta
+    
+                    } catch (error) {
+                        console.error('Erro ao buscar dados do jogo:', error);
+                    }
+                });
+            });
+        });
+    </script>
     <%- include ("../../partials/modals") %>
 </body>
 
