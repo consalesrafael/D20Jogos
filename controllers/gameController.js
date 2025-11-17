@@ -6,7 +6,7 @@ async function gameRegister(req, res) {
     const gameStock = req.body.gameStock;
     const gamePrice = req.body.gamePrice;
 
-    const caminhoFoto = req.file ? '/uploads/' + req.file.filename : '/imgs/default-game-image.png';
+    const caminhoFoto = req.file ? '/uploads/' + req.file.filename : '/imgs/LogoD20.png';
 
     if (!gameName || !gameCategory || !gameStock || !gamePrice) {
         console.error("Erro: Campos obrigatórios não preenchidos.");
@@ -76,19 +76,14 @@ async function deletGame(req,res) {
         }
     }
 }
-async function getJogoData(req,res) {
-    const jogoId = req.params.id
-    const jogo = await db.Jogo.findByPk(jogoId)
-
- try{
-    if(!jogoId){
-        return res.status(404).json({mensagem: "Jogo não encontrado"})
+async function findJogoById(jogoId) { 
+    try {
+        const jogo = await db.Jogo.findByPk(jogoId);
+        return jogo; 
+    } catch (error) {
+        console.error("Erro ao buscar jogo por ID:", error);
+        throw new Error("Erro ao buscar jogo no banco de dados.");
     }
-    res.json(jogo)
- }catch (error){
-    console.log(error)
-    res.status(500).json({mensagem:"Erro interno no servidor"})
- }
 }
 async function editGame(req,res) {
     const gameId = req.params.id
@@ -130,6 +125,6 @@ module.exports = {
     renderizaEstoquePage,
     renderizaAlugueis,
     deletGame,
-    getJogoData,
-    editGame
+    editGame,
+    findJogoById
 };

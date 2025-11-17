@@ -22,10 +22,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Consales",
   "license": "ISC",
-  "description": "",
+  "description": "D20 jogo",
   "devDependencies": {
     "sequelize-cli": "^6.6.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/consalesrafael/D20Jogos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/consalesrafael/D20Jogos/issues"
+  },
+  "homepage": "https://github.com/consalesrafael/D20Jogos#readme"
 }

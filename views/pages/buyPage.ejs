@@ -15,9 +15,7 @@
           <img src="/imgs/Senhor.png" class="img-fluid rounded" id="mainProductImage" alt="Imagem principal do produto">
         </div>
         <div class="product-thumbnails d-flex gap-3">
-          <img src="/imgs/Senhor_thumb1.png" class="img-fluid rounded active" onclick="changeImage(this)" alt="Miniatura 1">
-          <img src="/imgs/Senhor_thumb2.png" class="img-fluid rounded" onclick="changeImage(this)" alt="Miniatura 2">
-          <img src="/imgs/Senhor_thumb3.png" class="img-fluid rounded" onclick="changeImage(this)" alt="Miniatura 3">
+
         </div>
       </div>
 
@@ -51,19 +49,6 @@
   </div>
   <%- include ("../partials/footer") %>
 
-  <script>
-    function changeImage(thumbnail) {
-      // Pega a imagem principal
-      const mainImage = document.getElementById('mainProductImage');
-      // Muda a fonte da imagem principal para a fonte da miniatura clicada
-      mainImage.src = thumbnail.src;
-
-      // Lógica para destacar a miniatura ativa
-      const thumbnails = document.querySelectorAll('.product-thumbnails img');
-      thumbnails.forEach(thumb => thumb.classList.remove('active'));
-      thumbnail.classList.add('active');
-    }
-  </script>
 
   </body>
 
