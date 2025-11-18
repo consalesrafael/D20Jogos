@@ -19,27 +19,6 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-
-router.get("/buyPage/:id", async (req, res) => {
-    const jogoId = req.params.id;
-
-    try {
-        const jogo = await findJogoById(jogoId); 
-
-        if (!jogo) {
-         
-            return res.status(404).render("./pages/404", { message: "Jogo não encontrado." });
-        }
-
-       
-        res.render("./pages/buyPage", { jogo: jogo }); 
-
-    } catch (error) {
-        console.error("Erro na rota /buyPage/:id:", error);
-        
-        res.status(500).render("./pages/500", { message: "Erro interno ao processar sua solicitação." });
-    }
-})
 router.get("/admin/dashboard",(req,res)=>{
     res.render("./pages/admin/dashboard",{
        paginaAtual: 'dashboard'
@@ -61,6 +40,7 @@ router.post("/register",userController.register)
 
 router.post("/jogos/editar/:id",upload.single('gameImage'),gameController.editGame)
 router.post("/admin/add-game",upload.single('gameImage'),gameController.gameRegister)
+router.get("/jogo/:id",gameController.rederizaPaginaCompra)
 router.get("/gerenciaEstoque",gameController.redezaProduto, gameController.renderizaEstoquePage)
 router.get("/alugueis", gameController.redezaProduto,gameController.renderizaAlugueis)
 router.post("/jogos/deletar/:id",gameController.deletGame)

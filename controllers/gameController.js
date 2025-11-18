@@ -76,14 +76,13 @@ async function deletGame(req,res) {
         }
     }
 }
-async function findJogoById(jogoId) { 
-    try {
-        const jogo = await db.Jogo.findByPk(jogoId);
-        return jogo; 
-    } catch (error) {
-        console.error("Erro ao buscar jogo por ID:", error);
-        throw new Error("Erro ao buscar jogo no banco de dados.");
-    }
+async function rederizaPaginaCompra(req,res) {
+    const jogoId = req.params.id
+    const JogoParaEditar = await db.Jogo.findByPk(jogoId)
+
+    return res.render("./pages/buypage",{
+        jogo: JogoParaEditar
+    })
 }
 async function editGame(req,res) {
     const gameId = req.params.id
@@ -126,5 +125,5 @@ module.exports = {
     renderizaAlugueis,
     deletGame,
     editGame,
-    findJogoById
+    rederizaPaginaCompra
 };

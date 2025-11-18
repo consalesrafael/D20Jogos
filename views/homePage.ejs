@@ -42,7 +42,7 @@
             <p class="card-text">R$ <%= parseFloat(jogo.preco).toFixed(2).replace('.', ',') %></p>
           </div>
           <div class="card-footer bg-transparent border-0 d-flex flex-column gap-2 p-3">
-            <form action="/buyPage/<%= jogo.id %>" method="get"><button class="btn btn-danger w-100 rounded-0">Comprar</button></form>
+            <a href="/jogo/<%= jogo.id %>" class="btn btn-danger w-100 rounded-0">Comprar</a>
             
             <button class="btn btn-warning w-100 rounded-0">Alugar</button>
           </div>
