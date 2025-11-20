@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     descricao: DataTypes.TEXT,
     preco: DataTypes.DECIMAL,
     caminho_foto: DataTypes.STRING,
-    quantidade: DataTypes.INTEGER
+    quantidade: DataTypes.INTEGER,
+    categoria: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Jogo',

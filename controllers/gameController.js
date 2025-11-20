@@ -5,6 +5,7 @@ async function gameRegister(req, res) {
     const gameCategory = req.body.gameCategory;
     const gameStock = req.body.gameStock;
     const gamePrice = req.body.gamePrice;
+    const gameDesc = req.body.gameDesc
 
     const caminhoFoto = req.file ? '/uploads/' + req.file.filename : '/imgs/LogoD20.png';
 
@@ -26,7 +27,8 @@ async function gameRegister(req, res) {
             descricao: gameCategory,
             preco: gamePrice,
             quantidade: gameStock,
-            caminho_foto: caminhoFoto
+            caminho_foto: caminhoFoto,
+            categoria: gameDesc
         });
 
         res.redirect("/gerenciaEstoque");
