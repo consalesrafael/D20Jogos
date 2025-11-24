@@ -80,10 +80,18 @@ async function deletGame(req,res) {
 }
 async function rederizaPaginaCompra(req,res) {
     const jogoId = req.params.id
-    const JogoParaEditar = await db.Jogo.findByPk(jogoId)
+    const JogoPararenderizar = await db.Jogo.findByPk(jogoId)
 
     return res.render("./pages/buypage",{
-        jogo: JogoParaEditar
+        jogo: JogoPararenderizar
+    })
+}
+async function rederizaPaginaAluguel(req,res) {
+    const jogoId = req.params.id
+    const JogoPararenderizar = await db.Jogo.findByPk(jogoId)
+
+    return res.render("./pages/rentalPage",{
+        jogo: JogoPararenderizar
     })
 }
 async function editGame(req,res) {
@@ -127,5 +135,6 @@ module.exports = {
     renderizaAlugueis,
     deletGame,
     editGame,
-    rederizaPaginaCompra
+    rederizaPaginaCompra,
+    rederizaPaginaAluguel
 };
