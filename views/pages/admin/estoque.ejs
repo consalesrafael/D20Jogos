@@ -65,20 +65,65 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-icons">
-                                           <a href="#" class="edit-game-btn" 
-                                            data-id="<%= jogo.id %>" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#editGameModal"
-                                            title="Editar">
-                                             <i class="fas fa-pencil-alt"></i>
-                                         </a>
-                                            <form action="/jogos/deletar/<%= jogo.id %>" method="POST" style="display: inline;" onsubmit="return confirm('Você tem certeza que deseja apagar este jogo?');">
+                                            <a href="#" 
+                                               data-bs-toggle="modal" 
+                                               data-bs-target="#editGameModal<%= jogo.id %>"
+                                               title="Editar">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                        
+                                            <form action="/jogos/deletar/<%= jogo.id %>" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza?');">
                                                 <button type="submit" class="btn btn-link p-0 m-0 align-baseline" title="Apagar">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
+                        
+                                        <div class="modal fade" id="editGameModal<%= jogo.id %>" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog text-start"> <div class="modal-content bg-dark text-white">
+                                                    <div class="modal-header border-secondary">
+                                                        <h5 class="modal-title">Editar Jogo: <%= jogo.nome %></h5>
+                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/jogos/editar/<%= jogo.id %>" method="POST" enctype="multipart/form-data">
+                                                            
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Nome do Jogo</label>
+                                                                <input type="text" class="form-control" name="gameName" value="<%= jogo.nome %>" required>
+                                                            </div>
+                        
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Categoria</label>
+                                                                <input type="text" class="form-control" name="gameCategory" value="<%= jogo.descricao %>" required>
+                                                            </div>
+                        
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label class="form-label">Estoque</label>
+                                                                    <input type="number" class="form-control" name="gameStock" value="<%= jogo.quantidade %>" min="0" required>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label class="form-label">Preço (R$)</label>
+                                                                    <input type="number" class="form-control" name="gamePrice" value="<%= jogo.preco %>" min="0" step="0.01" required>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="mb-3">
+                                                                <label class="form-label">Nova Foto (Deixe vazio para manter a atual)</label>
+                                                                <input type="file" class="form-control bg-secondary text-white" name="gameImage" accept="image/*">
+                                                            </div>
+                        
+                                                            <div class="modal-footer border-top-0 d-flex justify-content-end pt-0 px-0">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                                <button type="submit" class="btn btn-danger">Salvar Alterações</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </td>
                                 </tr>
                             <% }) %>
                         </tbody>
@@ -93,38 +138,6 @@
             </div>
         </section>
     </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const editButtons = document.querySelectorAll('.edit-game-btn');
-    
-            editButtons.forEach(button => {
-                button.addEventListener('click', async (event) => {
-                    
-                    // 1. O ID é pego do ATRIBUTO 'data-id' do botão clicado
-                    const gameId = button.dataset.id; 
-    
-                    try {
-                        // 2. O ID é usado para buscar os dados do jogo na sua API
-                        const response = await fetch(`/api/jogos/${gameId}`);
-                        const jogo = await response.json();
-    
-                        // 3. Os dados preenchem o formulário
-                        document.getElementById('editGameName').value = jogo.nome;
-                        document.getElementById('editGameCategory').value = jogo.descricao;
-                        document.getElementById('editGameStock').value = jogo.quantidade;
-                        document.getElementById('editGamePrice').value = parseFloat(jogo.preco).toFixed(2);
-                        
-                        // 4. AQUI O ID É INJETADO NO 'action' DO FORMULÁRIO
-                        const editForm = document.getElementById('editGameForm');
-                        editForm.action = `/jogos/editar/${gameId}`; // Define a URL de envio correta
-    
-                    } catch (error) {
-                        console.error('Erro ao buscar dados do jogo:', error);
-                    }
-                });
-            });
-        });
-    </script>
     <%- include ("../../partials/modals") %>
 </body>
 
