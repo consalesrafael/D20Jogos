@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 // const loginController = require("../controller/loginController")
- const userController = require("../controllers/userController")
+const userController = require("../controllers/userController")
 // const authMiddleware = require("../middlewares/authMiddleware")
- const gameController = require("../controllers/gameController");
+const gameController = require("../controllers/gameController");
+const saleController = require("../controllers/saleController");
 // const relatorioController = require("../controller/relatorioCrotoller")
 const path = require("path");
 const multer = require("multer");
@@ -25,12 +26,10 @@ router.get("/admin/dashboard",(req,res)=>{
     })
   })
 
-  router.get('/vendas', (req, res) => {
-    res.render('./pages/admin/vendas', { 
-        paginaAtual: 'vendas'
-    });
-  });
-  router.get('/relatorios', (req, res) => {
+router.get('/vendas', saleController.listarVendas);
+router.get('/vendas/:id', saleController.detalhesVenda);
+router.post('/vendas/:id/deletar', saleController.deletarVenda);
+router.get('/relatorios', (req, res) => {
     res.render('./pages/admin/relatorios', { 
         paginaAtual: 'relatorios'
     });
@@ -42,6 +41,10 @@ router.post("/jogos/editar/:id",upload.single('gameImage'),gameController.editGa
 router.post("/admin/add-game",upload.single('gameImage'),gameController.gameRegister)
 router.get("/jogo/:id",gameController.rederizaPaginaCompra)
 router.get("/jogoAluga/:id",gameController.rederizaPaginaAluguel)
+
+router.post("/carrinho/adicionar/:id", gameController.addToCart);
+router.get("/carrinho", gameController.renderCart);
+router.post("/carrinho/confirmar", gameController.confirmarCompra);
 router.get("/gerenciaEstoque",gameController.redezaProduto, gameController.renderizaEstoquePage)
 router.get("/alugueis", gameController.redezaProduto,gameController.renderizaAlugueis)
 router.post("/jogos/deletar/:id",gameController.deletGame)

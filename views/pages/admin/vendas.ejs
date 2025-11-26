@@ -57,61 +57,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>VD-731</td>
-                                <td>Lucas Silva</td>
-                                <td>10/09/2025</td>
-                                <td class="text-center">2</td>
-                                <td>R$ 389,80</td>
-                                <td class="text-center"><span class="status-badge status-completed">Concluída</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-receipt" title="Gerar Recibo"></i>
-                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>VD-732</td>
-                                <td>Ana Beatriz</td>
-                                <td>08/09/2025</td>
-                                <td class="text-center">1</td>
-                                <td>R$ 299,90</td>
-                                <td class="text-center"><span class="status-badge status-canceled">Cancelada</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>VD-733</td>
-                                <td>Rafael Consales</td>
-                                <td>05/09/2025</td>
-                                <td class="text-center">3</td>
-                                <td>R$ 639,70</td>
-                                <td class="text-center"><span class="status-badge status-completed">Concluída</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-receipt" title="Gerar Recibo"></i>
-                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                             <tr>
-                                <td>VD-734</td>
-                                <td>João Pereira</td>
-                                <td>02/09/2025</td>
-                                <td class="text-center">1</td>
-                                <td>R$ 89,90</td>
-                                <td class="text-center"><span class="status-badge status-pending">Pendente</span></td>
-                                <td class="text-center">
-                                    <div class="action-icons">
-                                        <i class="fas fa-pencil-alt" title="Editar Venda"></i>
-                                        <i class="fas fa-eye" title="Ver Detalhes"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% if (vendas && vendas.length > 0) { %>
+                                <% vendas.forEach(function(venda) { %>
+                                    <tr>
+                                        <td><%= venda.id %></td>
+                                        <td><%= venda.cliente_nome || 'Cliente não informado' %></td>
+                                        <td><%= venda.dataFormatada %></td>
+                                        <td class="text-center"><%= venda.itensCount %></td>
+                                        <td>R$ <%= venda.totalFormatado %></td>
+                                        <td class="text-center">
+                                            <span class="status-badge status-completed">Concluída</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="action-icons">
+                                                <i class="fas fa-eye sale-view-details" 
+                                                   title="Ver Detalhes" 
+                                                   data-sale-id="<%= venda.id %>"></i>
+                                                <i class="fas fa-trash-alt sale-delete" 
+                                                   title="Excluir Venda" 
+                                                   data-sale-id="<%= venda.id %>"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        Nenhuma venda registrada até o momento.
+                                    </td>
+                                </tr>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
